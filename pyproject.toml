@@ -1,0 +1,27 @@
+[project]
+name = "pico-zephyr-zenoh"
+version = "0.1.0"
+description = "Practice project for zenoh with Zephyr on Pico W"
+dependencies = [
+	"west",
+	"pyserial>=3.5",
+	"ruff",
+	"nicegui",
+	"eclipse-zenoh>=1.0.0",
+	"grpcio-tools>=1.56.0",
+]
+
+[tool.ruff]
+line-length = 120
+
+ignore = [
+	"D100",  # Missing docstring in public module
+	"D104",  # Missing docstring in public package
+	"D107"   # Missing docstring in __init__
+]
+
+[tool.uv]
+managed = true
+
+[tool.ruff.flake8-bugbear]
+extend-immutable-calls = []

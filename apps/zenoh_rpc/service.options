@@ -1,0 +1,6 @@
+practice.rpc.WifiSettings.ssid max_size:32
+practice.rpc.WifiSettings.password max_size:64
+practice.rpc.EchoRequest.msg max_size:128
+practice.rpc.EchoResponse.msg max_size:128 
+practice.rpc.EchoRequestMalloc.msg type:FT_POINTER
+practice.rpc.EchoResponseMalloc.msg type:FT_POINTER

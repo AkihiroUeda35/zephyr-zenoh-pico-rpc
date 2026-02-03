@@ -1,0 +1,54 @@
+/ {
+	chosen {
+		zephyr,console = &uart0;
+		zephyr,shell-uart = &uart0;
+	};
+    leds {
+        compatible = "gpio-leds";
+        led_gp5: led_gp5 {
+            gpios = <&gpio0 5 GPIO_ACTIVE_HIGH>;
+            label = "External LED on GP5";
+        };
+    };
+    dht22_sensor: dht22 {
+        compatible = "aosong,dht";
+        status = "okay";
+        dio-gpios = <&gpio0 13 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+        dht22;
+    };
+    aliases {
+        led0 = &led_gp5;
+        dht0 = &dht22_sensor;
+    };
+
+};
+
+/*
+ * Storage partition for NVS (Wi-Fi credentials)
+ * Pico 2 W has 4MB flash (0x400000 bytes)
+ * Reserve last 64KB (16 pages * 4KB) for storage
+ */
+&flash0 {
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		storage_partition: partition@3F0000 {
+			label = "storage";
+			reg = <0x3F0000 0x10000>;
+		};
+	};
+};
+
+&uart0 {
+    current-speed = <921600>;
+    status = "okay";
+};
+
+&zephyr_udc0 {
+    status = "okay";
+    cdc_acm_uart0: cdc_acm_uart0 {
+        compatible = "zephyr,cdc-acm-uart";
+    };
+};

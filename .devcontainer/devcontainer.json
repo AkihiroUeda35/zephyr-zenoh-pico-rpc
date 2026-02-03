@@ -1,0 +1,39 @@
+{
+	"name": "Zephyr Zenoh RPC",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"remoteUser": "ubuntu",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cpptools",
+				"ms-vscode.cmake-tools",
+				"bufbuild.vscode-buf",
+				"charliermarsh.ruff",
+				"mhutchie.git-graph",
+				"xaver.clang-format"
+			],
+			"settings": {
+				"python.defaultInterpreterPath": ".venv/bin/python",
+				"python.terminal.activateEnvironment": true
+			}
+		}
+	},
+	"privileged": true,
+	"mounts": [
+		"source=/dev,target=/dev,type=bind",
+		"source=/etc/udev,target=/etc/udev,type=bind",
+		"source=${localEnv:HOME}/.gemini,target=/home/ubuntu/.gemini,type=bind",
+		"source=${localEnv:HOME}/.claude,target=/home/ubuntu/.claude,type=bind",
+		"source=${localEnv:HOME}/.gitconfig,target=/home/ubuntu/.gitconfig,type=bind,readonly"
+	],
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {},
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+			"version": "latest",
+			"enableNonRootDocker": "true",
+			"moby": "true"
+		}
+	}
+}

@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package practice.rpc;
+import "google/protobuf/descriptor.proto";
+extend google.protobuf.MessageOptions {
+  string zenoh_key = 50001;  // Custom option for Zenoh telemetry key
+}
+
+message WifiSettings {
+  string ssid = 1;
+  string password = 2;
+}
+
+message LedRequest {
+  bool on = 1;
+}
+
+message LedResponse {}
+
+message EchoRequest {
+  string msg = 1;
+}
+
+message EchoResponse {
+  string msg = 1;
+}
+
+message EchoRequestMalloc {
+  bytes msg = 1;
+}
+
+message EchoResponseMalloc {
+  bytes msg = 1;
+}
+
+message SensorRequest {}
+
+message SensorTelemetry {
+  option (zenoh_key) = "/telemetry/sensor";
+  float temperature = 1;
+  float humidity = 2;
+}
+
+message Empty {}
+
+service DeviceService {
+  rpc SetLed(LedRequest) returns (LedResponse);
+  rpc Echo(EchoRequest) returns (EchoResponse);
+  rpc EchoMalloc(EchoRequestMalloc) returns (EchoResponseMalloc);
+  rpc StartSensorStream(SensorRequest) returns (Empty);
+  rpc StopSensorStream(Empty) returns (Empty);
+  rpc ConfigureWifi(WifiSettings) returns (Empty);
+}
