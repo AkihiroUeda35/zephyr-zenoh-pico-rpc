@@ -104,7 +104,7 @@ def main():
             logger.error(f"Echo failed: {response.error}")
 
         logger.info("Calling EchoMalloc...")
-        response, echo_msg = device_service.echo_malloc(msg=b"Hello malloc!" * 100)
+        response, echo_msg = device_service.echo_malloc(msg=b"Hello malloc!" * 50)
         if response.success and echo_msg is not None:
             logger.info(f"EchoMalloc response: {len(echo_msg.msg)}")
         else:
