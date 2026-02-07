@@ -92,7 +92,7 @@ Options of build.py is following:
                         Flash runner to use (default: openocd)
 ```
 
-## Control MCU with Python script
+## Control MCU with Python script or GUI
 
 Start Zenoh Router, this script launches `zenohd` with serial option.
 
@@ -106,6 +106,10 @@ Control MCU with example zenoh client on PC
 uv run tools/example_client.py
 ```
 
+Launch GUI application
+```bash
+uv run tools/gui.py
+```
 
 ## Directory structure
 
