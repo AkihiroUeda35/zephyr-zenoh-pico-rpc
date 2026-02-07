@@ -1,4 +1,4 @@
-#  Zephyr Zenoh RPC
+#  Zephyr Zenoh RPC using Protocol Buffers
 
 Protocol Buffers + Zenoh RPC example on Raspberry Pi Pico 2 W with Zephyr RTOS.
 
