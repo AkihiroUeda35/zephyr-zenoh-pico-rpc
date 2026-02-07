@@ -1,4 +1,38 @@
-# Pico Zephyr Zenoh practice
+#  Zephyr Zenoh RPC
+
+Protocol Buffers + Zenoh RPC example on Raspberry Pi Pico 2 W with Zephyr RTOS.
+
+```mermaid
+sequenceDiagram
+    participant P as Pico 2 W (Client)
+    participant R as Host PC (Router)
+    participant D as Dashboard / App
+
+    Note over P, D: 【Telmetry & Log】 (Pub/Sub)
+    P->>R: Publish (telemetry/sensor)
+    P->>R: Publish (log)
+    R->>D: Push (telemetry/sensor)
+    R->>D: Push (log)
+
+    Note over P, D: 【RPC】 (Query / Queryable)
+    D->>R: Query (SetLed on=true)
+    R->>P: Query (SetLed on=true)
+    Note right of P: RPC
+    P-->>R: Reply (Status: OK)
+    R-->>D: Reply (Status: OK)
+```
+
+RPC Server, Client and GUI is generated from Protocol Buffer Schema!
+
+![](docs/MDimage/2026-02-07-093652.png)
+
+## Hardware
+
+- Raspberry Pi Pico 2 + Debug Probe
+- LED
+- DHT22 
+
+![](docs/MDimage/2026-02-07-093353.png)
 
 ## Environment setup
 
